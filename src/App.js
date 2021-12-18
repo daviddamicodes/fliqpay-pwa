@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -6,38 +6,39 @@ import Payout from './components/Payout/Payout';
 import RecipientPage from './components/Recipient/RecipientPage';
 import ReviewTransfer from './components/Review/ReviewTransfer';
 import { DetailsProvider } from './components/DetailsContext';
+import InstallPwa from './components/InstallPwa';
 // import InstallModal from './components/InstallModal';
-import InstallFooter from './components/InstallFooter';
+// import InstallFooter from './components/InstallFooter';
 
 function App() {
 
-  const [deferredPrompt, setDeferredPrompt] = useState();
+  
+  // const installProcess = () => {
+  //   const [deferredPrompt, setDeferredPrompt] = useState(false);
 
-  const installProcess = () => {
+  //   console.log('fired')
+  //   window.addEventListener('beforeinstallprompt', (e) => {
+  //     e.preventDefault();
+  //     setDeferredPrompt(e);
+  //     console.log('first defered value:', deferredPrompt)
+  //     startInstall();
+  //   })
+  //   const startInstall = () => {
+  //     if (deferredPrompt) {
+  //       deferredPrompt.prompt();
+  //       deferredPrompt.userChoice.then(choice => {
+  //         if (choice.outcome === 'accepted') {
+  //           console.log('installed')
+  //         } else {
+  //           console.log('canceled')
+  //         }
+  //       })
+  //     } else if (!deferredPrompt) {
+  //       console.log('defredPrompt is not defined:', deferredPrompt)
+  //     }
+  //   }
 
-    console.log('fired')
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      console.log('first defered value:', deferredPrompt)
-      startInstall();
-    })
-    const startInstall = () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choice => {
-          if (choice.outcome === 'accepted') {
-            console.log('installed')
-          } else {
-            console.log('canceled')
-          }
-        })
-      } else if (!deferredPrompt) {
-        console.log('defredPrompt is not defined:', deferredPrompt)
-      }
-    }
-
-  }
+  // }
 
 
   return (
@@ -52,7 +53,8 @@ function App() {
           <Route path="/review" component={ReviewTransfer} />
         </DetailsProvider>
       </Switch>
-      <InstallFooter installProcess={installProcess} />
+      {/* <InstallFooter /> */}
+      <InstallPwa />
     </Router>
   );
 }
