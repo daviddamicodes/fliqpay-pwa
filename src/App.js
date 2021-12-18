@@ -19,6 +19,7 @@ function App() {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
+      console.log('first defered value:', deferredPrompt)
       startInstall();
     })
     const startInstall = () => {
@@ -31,6 +32,8 @@ function App() {
             console.log('canceled')
           }
         })
+      } else if (!deferredPrompt) {
+        console.log('defredPrompt is not defined:', deferredPrompt)
       }
     }
 
