@@ -15,6 +15,7 @@ function App() {
 
   const installProcess = () => {
 
+    console.log('fired')
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
