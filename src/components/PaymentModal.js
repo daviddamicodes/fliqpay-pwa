@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import ReactModal from "react-modal";
+// import ReactModal from "react-modal";
 import { useSpring, animated } from "react-spring";
 import { MdClose } from "react-icons/md";
 import { RiCheckLine } from "react-icons/ri";

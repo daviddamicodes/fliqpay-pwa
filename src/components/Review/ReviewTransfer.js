@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { numFormat } from "../NumberFormat";
 import Modal from "../Modal";
-import PaymentModal from "../PaymentModal";
+// import PaymentModal from "../PaymentModal";
 
 const ReviewTransfer = () => {
   const [showModal, setShowModal] = useState(false);
