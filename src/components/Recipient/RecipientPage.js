@@ -9,28 +9,45 @@ const RecipientPage = () => {
     fullName: "",
     ibanAcct: "",
     swiftBic: "",
-    disabled: true,
   });
 
   const [toggle, setToggle] = useState(true);
+
+  const disabled = () => {
+    if (
+      toggle &&
+      !(
+        input.email.length !== 0 &&
+        input.fullName.length !== 0 &&
+        input.ibanAcct.length !== 0
+      )
+    ) {
+      return true;
+    } else if (
+      !toggle &&
+      !(
+        input.email.length !== 0 &&
+        input.fullName.length !== 0 &&
+        input.ibanAcct.length !== 0 &&
+        input.swiftBic.length !== 0
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  //   console.log(disabled());
 
   const dispatch = useDispatch();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
+    if (name === "ibanAcct" && value.length && !Number(value)) return;
     setInput({
       ...input,
       [name]: value,
-    });
-  };
-
-  const handleIbanInput = (e) => {
-    const { name, value } = e.target;
-    setInput({
-      ...input,
-      [name]: value,
-      // [name]: (value).trim,
-      disabled: false,
     });
   };
 
@@ -123,8 +140,9 @@ const RecipientPage = () => {
           </label>
           <input
             name="ibanAcct"
-            type="text"
-            onChange={handleIbanInput}
+            type="tel"
+            value={input.ibanAcct}
+            onChange={handleInput}
             required
             className=" w-5/5 px-3.5 py-3 text-sm rounded-lg focus:outline-none border-gray-1 border-2 text-purple-900 mb-3 appearance-none"
             autoComplete="off"
@@ -143,7 +161,8 @@ const RecipientPage = () => {
               <input
                 name="swiftBic"
                 type="text"
-                onChange={handleIbanInput}
+                value={input.swiftBic}
+                onChange={handleInput}
                 required
                 className=" w-5/5 px-3.5 py-3 text-sm rounded-sm focus:outline-none border-gray-1 border-2 text-purple-900 mb-3 appearance-none"
                 autoComplete="off"
@@ -155,10 +174,10 @@ const RecipientPage = () => {
         <Link to="/review">
           <button
             className={`w-full font-medium text-xs py-4 px-6 ${
-              input.disabled ? "bg-mid-blue opacity-50" : "bg-mid-blue"
+              disabled() ? "bg-mid-blue opacity-50" : "bg-mid-blue"
             } text-white flex-grow rounded-md mt-2`}
             onClick={handleDispatch}
-            disabled={input.disabled}
+            disabled={disabled()}
           >
             Continue
           </button>
